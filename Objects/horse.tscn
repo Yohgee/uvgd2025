@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://doxhhdqr151l6"]
+
+[ext_resource type="Texture2D" uid="uid://crhpvn52ktjkv" path="res://Assets/Art/horse.png" id="1_n1wi1"]
+[ext_resource type="Script" path="res://Objects/horse.gd" id="1_ugtku"]
+[ext_resource type="Script" path="res://Objects/physics_component.gd" id="3_3n5vh"]
+[ext_resource type="Script" path="res://Objects/movement_component.gd" id="4_3u71u"]
+[ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_33l7q"]
+[ext_resource type="Script" path="res://Objects/jump_horse.gd" id="6_hctuq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cis7"]
+size = Vector2(60, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kqq1"]
+size = Vector2(36, 12)
+
+[node name="Horse" type="CharacterBody2D" node_paths=PackedStringArray("horse_action")]
+collision_layer = 4
+script = ExtResource("1_ugtku")
+horse_action = NodePath("JumpHorse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0cis7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_n1wi1")
+hframes = 2
+
+[node name="Saddle" type="Area2D" parent="."]
+position = Vector2(0, -22)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Saddle"]
+shape = SubResource("RectangleShape2D_5kqq1")
+
+[node name="PhysicsComponent" type="Node" parent="."]
+script = ExtResource("3_3n5vh")
+
+[node name="RiderOffset" type="Node2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("4_3u71u")
+
+[node name="JumpComponent" type="Node" parent="."]
+script = ExtResource("5_33l7q")
+action = "horse"
+floatiness = 1.4
+
+[node name="JumpHorse" type="Node" parent="."]
+script = ExtResource("6_hctuq")
+
+[connection signal="body_entered" from="Saddle" to="." method="_on_saddle_body_entered"]

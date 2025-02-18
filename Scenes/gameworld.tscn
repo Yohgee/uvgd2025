@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c76iwc0owjiii"]
+
+[ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="1_jaimt"]
+[ext_resource type="PackedScene" uid="uid://doxhhdqr151l6" path="res://Objects/horse.tscn" id="2_jywcm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_526sm"]
+
+[node name="Gameworld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_jaimt")]
+position = Vector2(466, 200)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(521, 452)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_526sm")
+
+[node name="Horse" parent="." instance=ExtResource("2_jywcm")]
+position = Vector2(468, 415)

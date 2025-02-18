@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpuyumy11ggdt"]
+
+[ext_resource type="Texture2D" uid="uid://df18o28e8yuie" path="res://Assets/Art/hat.png" id="1_nvrm2"]
+[ext_resource type="Script" path="res://Objects/player.gd" id="1_r8vl1"]
+[ext_resource type="Script" path="res://Objects/physics_component.gd" id="3_6m6vc"]
+[ext_resource type="Script" path="res://Objects/movement_component.gd" id="4_7qosi"]
+[ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_5tvle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8smwa"]
+size = Vector2(52, 20)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_r8vl1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8smwa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -15)
+texture = ExtResource("1_nvrm2")
+
+[node name="PhysicsComponent" type="Node" parent="."]
+script = ExtResource("3_6m6vc")
+
+[node name="MovementComponent" type="Node" parent="."]
+script = ExtResource("4_7qosi")
+
+[node name="JumpComponent" type="Node" parent="."]
+script = ExtResource("5_5tvle")
+floatiness = 2.6
