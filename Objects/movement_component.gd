@@ -15,5 +15,4 @@ func process_movement(delta):
 		cspeed *= 2
 		
 	parent.velocity.x = clamp(parent.velocity.x + cspeed, -max_speed, max_speed)
-	print(parent.velocity)
 	

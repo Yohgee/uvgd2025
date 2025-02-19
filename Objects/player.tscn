@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpuyumy11ggdt"]
+[gd_scene load_steps=8 format=3 uid="uid://dpuyumy11ggdt"]
 
 [ext_resource type="Texture2D" uid="uid://df18o28e8yuie" path="res://Assets/Art/hat.png" id="1_nvrm2"]
 [ext_resource type="Script" path="res://Objects/player.gd" id="1_r8vl1"]
@@ -7,7 +7,10 @@
 [ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_5tvle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8smwa"]
-size = Vector2(52, 20)
+size = Vector2(28, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmb18"]
+size = Vector2(32, 20)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -29,3 +32,17 @@ script = ExtResource("4_7qosi")
 [node name="JumpComponent" type="Node" parent="."]
 script = ExtResource("5_5tvle")
 floatiness = 2.6
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_bottom = 600
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_nmb18")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
+[connection signal="body_entered" from="Hurtbox" to="." method="hurt"]

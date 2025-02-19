@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpdpky0fs0pqo"]
+
+[ext_resource type="Texture2D" uid="uid://camoctei7jfps" path="res://Assets/Art/checkpoint.png" id="1_7qp3r"]
+[ext_resource type="Script" path="res://Objects/checkpoint.gd" id="1_67fag"]
+[ext_resource type="Texture2D" uid="uid://ytarcee6ucl3" path="res://Assets/Art/particle.png" id="3_kwm6i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikhwq"]
+size = Vector2(24, 21)
+
+[sub_resource type="Curve" id="Curve_msygb"]
+_data = [Vector2(0.00666666, 1), 0.0, 0.468479, 0, 0, Vector2(1, 0.021978), -0.18315, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nmyr3"]
+curve = SubResource("Curve_msygb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_55is7"]
+particle_flag_disable_z = true
+angle_min = -365.1
+angle_max = 425.9
+direction = Vector3(0, -1, 0)
+spread = 61.18
+initial_velocity_min = 42.25
+initial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.4
+scale_max = 0.6
+alpha_curve = SubResource("CurveTexture_nmyr3")
+
+[node name="Checkpoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_67fag")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7qp3r")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -10.5)
+shape = SubResource("RectangleShape2D_ikhwq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -9)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_55is7")
+texture = ExtResource("3_kwm6i")
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
