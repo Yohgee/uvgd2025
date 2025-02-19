@@ -28,6 +28,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	movement_component.cspeed = 0
+	
+	if global_position.y > 800:
+		hurt(null)
 
 func handle_horse(delta):
 	self.global_position = horse.rider_offset.global_position

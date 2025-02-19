@@ -10,9 +10,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		if springiness.x != 0: body.velocity.x = springiness.x
 		if springiness.y != 0: body.velocity.y = springiness.y
-		active = false
+		#active = false
 		sprite_2d.frame = 1
-		print("test")
+		#print(body.global_position)
 		await get_tree().create_timer(0.3).timeout
 		sprite_2d.frame = 0
 		active = true

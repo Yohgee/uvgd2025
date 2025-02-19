@@ -6,3 +6,7 @@ extends HorseAction
 func action():
 	if horse.is_on_floor():
 		horse.velocity.y = jump_component.initial_vel
+		horse.move_and_collide(horse.velocity * horse.get_process_delta_time())
+		horse.move_and_collide(horse.velocity * horse.get_process_delta_time())
+		horse.move_and_collide(horse.velocity * horse.get_process_delta_time())
+		horse.move_and_collide(horse.velocity * horse.get_process_delta_time())

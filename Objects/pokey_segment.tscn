@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://diytyud1chojo"]
+
+[ext_resource type="Script" path="res://Objects/pokey_segment.gd" id="1_2tf37"]
+[ext_resource type="Texture2D" uid="uid://drr8c0i722e3l" path="res://Assets/Art/pokey.png" id="1_x403e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t0d6v"]
+radius = 12.0
+
+[node name="PokeySegment" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_2tf37")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x403e")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t0d6v")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

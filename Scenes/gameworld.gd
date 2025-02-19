@@ -19,6 +19,10 @@ func _ready() -> void:
 	var t := get_tree().create_tween()
 	t.tween_property(screen_fade,"modulate:a", 0, 0.5)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("reset"):
+		reload()
+
 func reload():
 	var t := get_tree().create_tween()
 	t.tween_property(screen_fade,"modulate:a", 2, 0.3)
