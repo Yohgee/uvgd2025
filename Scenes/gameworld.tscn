@@ -701,11 +701,9 @@ height = 9
 
 [node name="Pokey8" parent="Pokeys" instance=ExtResource("8_c3pv2")]
 position = Vector2(10288, 384)
-height = 4
 
 [node name="Pokey9" parent="Pokeys" instance=ExtResource("8_c3pv2")]
 position = Vector2(10960, 208)
-height = 4
 
 [node name="Pokey10" parent="Pokeys" instance=ExtResource("8_c3pv2")]
 position = Vector2(12112, 432)

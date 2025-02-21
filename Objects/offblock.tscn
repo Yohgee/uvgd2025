@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bh8q85jn7tj15" path="res://Assets/Art/off_block.png" id="2_ftqrj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2h4yy"]
-size = Vector2(32, 32)
+size = Vector2(30, 30)
 
 [node name="Offblock" type="StaticBody2D"]
 script = ExtResource("1_11owa")

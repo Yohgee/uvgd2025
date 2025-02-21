@@ -5,7 +5,7 @@ const POKEY_SEGMENT = preload("res://Objects/pokey_segment.tscn")
 @onready var movement_component: FollowMovement = $MovementComponent
 
 @export var speed : float = 100
-@export var height : int = 1
+@export var height : int = 4
 @export var update_follow_range := 2.0
 
 var active = false
