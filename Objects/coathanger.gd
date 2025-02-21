@@ -4,3 +4,6 @@ extends HorseAction
 
 func _physics_process(_delta: float) -> void:
 	horse.velocity = Vector2.ZERO
+
+func action():
+	pass

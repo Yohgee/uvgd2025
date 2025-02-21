@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c76iwc0owjiii"]
+[gd_scene load_steps=15 format=4 uid="uid://c76iwc0owjiii"]
 
 [ext_resource type="Script" path="res://Scenes/gameworld.gd" id="1_cipe1"]
 [ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="1_jaimt"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ddf2xn56ep7s7" path="res://Objects/coathanger.tscn" id="7_fgrdh"]
 [ext_resource type="PackedScene" uid="uid://3r20i6bybpb7" path="res://Objects/pokey.tscn" id="8_c3pv2"]
 [ext_resource type="PackedScene" uid="uid://doxhhdqr151l6" path="res://Objects/horse.tscn" id="9_f4ifn"]
+[ext_resource type="PackedScene" uid="uid://bnkromv6b6lxj" path="res://Objects/level_ender.tscn" id="10_g0f88"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6xs0"]
 resource_name = "desert"
@@ -444,12 +445,16 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_i6xs0")
 sources/2 = SubResource("TileSetAtlasSource_3sggr")
 
-[node name="Gameworld" type="Node2D"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eu5fa"]
+normal = Vector2(-1, 0)
+
+[node name="Gameworld" type="Node2D" groups=["level"]]
 script = ExtResource("1_cipe1")
 starting_horse = "res://Objects/horse.tscn"
 
 [node name="Player" parent="." instance=ExtResource("1_jaimt")]
-position = Vector2(11152, 384)
+z_index = 1
+position = Vector2(128, 384)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 1)
@@ -710,3 +715,10 @@ update_follow_range = 5.0
 
 [node name="Horse" parent="." instance=ExtResource("9_f4ifn")]
 position = Vector2(12528, 512)
+
+[node name="LevelEnder" parent="." instance=ExtResource("10_g0f88")]
+position = Vector2(14080, 384)
+level_trans = "res://Scenes/LevelTransition_canyon.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnder"]
+shape = SubResource("WorldBoundaryShape2D_eu5fa")

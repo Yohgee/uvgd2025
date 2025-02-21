@@ -7,13 +7,14 @@ const DISMOUNT_VEL = -360
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var jump_component: JumpComponent = $JumpComponent
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var camera_2d: Camera2D = $Camera2D
 
 var horse : Horse = null
 
-signal died
+var dead = false
 
 func _physics_process(delta: float) -> void:
-	
+	if dead:return
 	if !horse:
 		physics_component.process_physics(delta)
 		if !is_on_floor():
@@ -42,10 +43,15 @@ func handle_horse(delta):
 	if Input.is_action_just_pressed("horse"):
 		horse.horse_action.action()
 	
+	if is_on_ceiling():
+		horse.velocity.y = 0
+	
 	if Input.is_action_just_pressed("jump"):
 		velocity = horse.velocity
 		horse = null
 		velocity.y = DISMOUNT_VEL
 
 func hurt(_body : Node2D):
-	died.emit()
+	if dead: return
+	dead = true
+	get_tree().get_first_node_in_group("level").reload()

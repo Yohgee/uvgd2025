@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://6xnfbo6i2d8h"]
+
+[ext_resource type="Script" path="res://Objects/onblock.gd" id="1_c3dri"]
+[ext_resource type="Texture2D" uid="uid://bh4vtv16veqtk" path="res://Assets/Art/on_block.png" id="1_uvxlm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h4yy"]
+size = Vector2(32, 32)
+
+[node name="Onblock" type="StaticBody2D"]
+script = ExtResource("1_c3dri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2h4yy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uvxlm")
+hframes = 2

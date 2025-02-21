@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://2d8qyotlw8ww"]
+
+[ext_resource type="Script" path="res://Objects/offblock.gd" id="1_yit8a"]
+[ext_resource type="Texture2D" uid="uid://b0nj3jfjq62s2" path="res://Assets/Art/offspike.png" id="2_tgt10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h4yy"]
+size = Vector2(12, 15)
+
+[node name="Offblock" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_yit8a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_2h4yy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tgt10")
+hframes = 2
+frame = 1

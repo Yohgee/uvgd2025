@@ -16,7 +16,7 @@ size = Vector2(24, 16)
 [node name="Coathanger" type="CharacterBody2D" node_paths=PackedStringArray("horse_action")]
 collision_layer = 4
 script = ExtResource("1_s8xrc")
-horse_action = NodePath("")
+horse_action = NodePath("Coathanger")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

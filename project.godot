@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="uvgd2025"
-run/main_scene="res://Scenes/gameworld.tscn"
+run/main_scene="res://Scenes/canyon.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,10 @@ Global="*res://Global.gd"
 window/size/viewport_width=800
 window/size/viewport_height=600
 window/stretch/mode="viewport"
+
+[gui]
+
+theme/custom_font="res://Assets/Spineless.ttf"
 
 [input]
 
