@@ -6,6 +6,7 @@ class_name ShootAttack
 @export var repeat : int = 1
 
 @onready var l = get_tree().get_first_node_in_group("level")
+@onready var shoot_sfx: AudioStreamPlayer = $shoot_sfx
 
 func attack():
 	for i in repeat:
@@ -14,6 +15,6 @@ func attack():
 			thing = thing.instantiate() as Node2D
 			thing.global_position = global_position
 			l.add_child(thing)
-			
+			shoot_sfx.play()
 			await  get_tree().create_timer(delay).timeout
 	attack_done.emit()

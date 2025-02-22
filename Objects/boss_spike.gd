@@ -5,7 +5,8 @@ class_name BossSpike
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
-	activate()
+	#activate()
+	pass
 
 func activate():
 	animation_player.play("spike")

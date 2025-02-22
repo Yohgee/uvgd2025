@@ -10,6 +10,8 @@ class_name Horse
 
 @export var horse_action : HorseAction
 
+var saddle_player : Player = null
+
 var run_timer := 0.0
 @export var active = true
 
@@ -31,6 +33,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		sprite_2d.frame = 0
 	
+	if saddle_player and saddle_player.velocity.y >= 0:
+		if velocity.y < saddle_player.velocity.y:
+			saddle_player.velocity.y = velocity.y
+		velocity = saddle_player.velocity
+		saddle_player.velocity = Vector2.ZERO
+		saddle_player.horse = self
+		saddle_player = null
+		catch_sfx.play()
+	
 	move_and_slide()
 	movement_component.cspeed = 0
 	
@@ -41,18 +52,24 @@ func _physics_process(delta: float) -> void:
 func _on_saddle_body_entered(body: Node2D) -> void:
 	if body is not Player: return
 	
-	body = body as Player
-	
-	if body.velocity.y < 0: return
-	
-	if velocity.y < body.velocity.y:
-		body.velocity.y = velocity.y
-	velocity = body.velocity
-	body.velocity = Vector2.ZERO
-	body.horse = self
-	catch_sfx.play()
+	saddle_player = body as Player
+	#
+	#if body.velocity.y < 0: return
+	#
+	#if velocity.y < body.velocity.y:
+		#body.velocity.y = velocity.y
+	#velocity = body.velocity
+	#body.velocity = Vector2.ZERO
+	#body.horse = self
+	#catch_sfx.play()
 	
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	active = true
+
+
+func _on_saddle_body_exited(body: Node2D) -> void:
+	if body is not Player: return
+	
+	saddle_player = null

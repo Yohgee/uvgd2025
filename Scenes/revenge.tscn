@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://eppp1vn57ey3"]
+[gd_scene load_steps=27 format=4 uid="uid://eppp1vn57ey3"]
 
 [ext_resource type="Script" path="res://Scenes/gameworld.gd" id="1_mffv5"]
 [ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="2_xn7j2"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://4ytqqnccqhqv" path="res://Objects/boss_spike.tscn" id="12_ynjwi"]
 [ext_resource type="PackedScene" uid="uid://cnhx01lhb05j4" path="res://Objects/ceiling.tscn" id="13_pa4kq"]
 [ext_resource type="Script" path="res://Scenes/arrow.gd" id="16_7nffc"]
+[ext_resource type="AudioStream" uid="uid://4olpw1o67ddy" path="res://Assets/Sounds/hb.wav" id="17_0gpxd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m7lh2"]
 resource_name = "cave"
@@ -858,9 +859,49 @@ sources/2 = SubResource("TileSetAtlasSource_3sggr")
 sources/0 = SubResource("TileSetAtlasSource_m7lh2")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8iofe"]
+radius = 23.0868
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1yo5"]
 size = Vector2(20, 384)
+
+[sub_resource type="Animation" id="Animation_duqdr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Boss:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2029, 467)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.523598]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hb:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qxaf3"]
 resource_name = "boss_getup"
@@ -889,32 +930,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [-0.523598, -0.349066, 0.0]
 }
-
-[sub_resource type="Animation" id="Animation_duqdr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Boss:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hb:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2029, 467)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Boss:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.523598]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pv6fd"]
@@ -963,6 +989,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="LevelEnder" parent="." instance=ExtResource("10_p05ow")]
 position = Vector2(2080, 432)
+level_trans = "res://Scenes/winner.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnder"]
 position = Vector2(-39, 62)
@@ -1097,6 +1124,9 @@ position = Vector2(2000, 464)
 rotation = 0.523598
 texture = ExtResource("11_vxqs7")
 script = ExtResource("16_7nffc")
+
+[node name="Hb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_0gpxd")
 
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]
 [connection signal="boss_triggered" from="BossTrigger" to="TileMapLayer2" method="_on_boss_trigger_boss_triggered"]

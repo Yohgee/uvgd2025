@@ -53,5 +53,14 @@ stream = ExtResource("6_h76n6")
 [node name="DeathSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_0l4xf")
 
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -88.0
+offset_top = -44.0
+offset_right = 89.0
+offset_bottom = -26.0
+text = "Press R to restart"
+horizontal_alignment = 1
+
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="body_entered" from="Hurtbox" to="." method="hurt"]

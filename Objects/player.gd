@@ -10,6 +10,7 @@ const DISMOUNT_VEL = -360
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var jump_sfx: AudioStreamPlayer = $Jump
 @onready var death_sfx: AudioStreamPlayer = $DeathSfx
+@onready var label: Label = $Label
 
 var horse : Horse = null
 
@@ -22,11 +23,15 @@ func _physics_process(delta: float) -> void:
 		if !is_on_floor():
 			movement_component.process_movement(delta)
 			jump_component.process_jump(delta)
+			label.hide()
+		else:
+			label.show()
 		if movement_component.cspeed > 0:
 			sprite_2d.flip_h = false
 		elif movement_component.cspeed != 0:
 			sprite_2d.flip_h = true
 	else:
+		label.hide()
 		handle_horse(delta)
 	
 	move_and_slide()

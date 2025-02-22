@@ -61,3 +61,4 @@ stream = ExtResource("7_8uwf4")
 stream = ExtResource("7_hco6f")
 
 [connection signal="body_entered" from="Saddle" to="." method="_on_saddle_body_entered"]
+[connection signal="body_exited" from="Saddle" to="." method="_on_saddle_body_exited"]

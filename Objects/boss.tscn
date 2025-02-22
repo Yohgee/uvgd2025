@@ -1,13 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm5u4fjsc35uc"]
+[gd_scene load_steps=12 format=3 uid="uid://bm5u4fjsc35uc"]
 
 [ext_resource type="Script" path="res://Objects/boss.gd" id="1_cpqav"]
 [ext_resource type="Texture2D" uid="uid://eg41qcskyrre" path="res://Assets/Art/boss.png" id="1_rmbbj"]
 [ext_resource type="Script" path="res://Objects/shoot_attack.gd" id="3_7lkip"]
 [ext_resource type="Script" path="res://Objects/swoop.gd" id="4_namtc"]
+[ext_resource type="AudioStream" uid="uid://w20eypaklpmf" path="res://Assets/Sounds/laserShoot.wav" id="4_w5vh5"]
 [ext_resource type="Script" path="res://Objects/spike_all.gd" id="5_7177a"]
+[ext_resource type="AudioStream" uid="uid://qn3vpogj87q1" path="res://Assets/Sounds/tone2.wav" id="6_lt1nf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbi73"]
 size = Vector2(50, 47)
+
+[sub_resource type="Animation" id="Animation_s6orm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_yr1yd"]
 resource_name = "hit_animation"
@@ -23,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Color(1, 1, 1, 1), Color(96.757, 1, 1, 1), Color(1, 1, 1, 1), Color(100, 1, 1, 1), Color(1, 1, 1, 1), Color(2.703, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_s6orm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f6kfe"]
@@ -70,14 +72,23 @@ libraries = {
 script = ExtResource("3_7lkip")
 things = Array[String](["res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn"])
 
+[node name="shoot_sfx" type="AudioStreamPlayer" parent="Attacks/ShootAttack"]
+stream = ExtResource("4_w5vh5")
+
 [node name="CircleShoot" type="Node2D" parent="Attacks"]
 script = ExtResource("3_7lkip")
 things = Array[String](["res://Objects/circle_blast.tscn", "res://Objects/circle_shot_45.tscn"])
 delay = 0.7
 repeat = 2
 
+[node name="shoot_sfx" type="AudioStreamPlayer" parent="Attacks/CircleShoot"]
+stream = ExtResource("4_w5vh5")
+
 [node name="Swoop" type="Node2D" parent="Attacks"]
 script = ExtResource("4_namtc")
+
+[node name="Tone" type="AudioStreamPlayer" parent="Attacks/Swoop"]
+stream = ExtResource("6_lt1nf")
 
 [node name="SpikeAll" type="Node2D" parent="Attacks"]
 script = ExtResource("5_7177a")

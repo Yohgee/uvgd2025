@@ -1,0 +1,174 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct474btpj8xdf"]
+
+[ext_resource type="Texture2D" uid="uid://bglukto2kffp0" path="res://Assets/Art/intro.png" id="1_bi0pb"]
+[ext_resource type="Script" path="res://Scenes/intro.gd" id="1_xs4vr"]
+[ext_resource type="AudioStream" uid="uid://w20eypaklpmf" path="res://Assets/Sounds/laserShoot.wav" id="2_4kjan"]
+[ext_resource type="AudioStream" uid="uid://cvle60rltbluw" path="res://Assets/Sounds/explosion.wav" id="3_uq75j"]
+[ext_resource type="AudioStream" uid="uid://c30kmxqih5oxx" path="res://Assets/Sounds/jump.wav" id="4_0jfev"]
+[ext_resource type="AudioStream" uid="uid://b20kputsflph8" path="res://Assets/Sounds/click.wav" id="5_me566"]
+
+[sub_resource type="Animation" id="Animation_q67yg"]
+resource_name = "intro"
+length = 7.5
+step = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bounce:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shoot:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("jump:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("catch:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4jxlp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bounce:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("shoot:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("jump:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("catch:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1enu"]
+_data = {
+"RESET": SubResource("Animation_4jxlp"),
+"intro": SubResource("Animation_q67yg")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_xs4vr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 807.0
+offset_bottom = 603.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(400, 304)
+texture = ExtResource("1_bi0pb")
+hframes = 6
+
+[node name="bounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4kjan")
+
+[node name="shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uq75j")
+
+[node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0jfev")
+
+[node name="catch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_me566")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q1enu")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
