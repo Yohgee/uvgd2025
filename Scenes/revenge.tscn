@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://eppp1vn57ey3"]
+[gd_scene load_steps=26 format=4 uid="uid://eppp1vn57ey3"]
 
 [ext_resource type="Script" path="res://Scenes/gameworld.gd" id="1_mffv5"]
 [ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="2_xn7j2"]
@@ -7,10 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://bekwxcb5vljkc" path="res://Assets/Art/cactus.png" id="4_3243c"]
 [ext_resource type="Script" path="res://Scenes/bossdoorthing.gd" id="6_cuoxe"]
 [ext_resource type="Script" path="res://Objects/boss_trigger.gd" id="7_bdgkg"]
+[ext_resource type="Script" path="res://Scenes/collision_shape_2d.gd" id="8_v57mh"]
 [ext_resource type="Texture2D" uid="uid://c0metrlnqlanw" path="res://Assets/Art/sleeper.png" id="9_udi1m"]
 [ext_resource type="PackedScene" uid="uid://bm5u4fjsc35uc" path="res://Objects/boss.tscn" id="10_l56vc"]
 [ext_resource type="PackedScene" uid="uid://bnkromv6b6lxj" path="res://Objects/level_ender.tscn" id="10_p05ow"]
 [ext_resource type="Script" path="res://Scenes/bossanim.gd" id="11_uxxmx"]
+[ext_resource type="Texture2D" uid="uid://j2f25erho63m" path="res://Assets/Art/arrow.png" id="11_vxqs7"]
+[ext_resource type="PackedScene" uid="uid://4ytqqnccqhqv" path="res://Objects/boss_spike.tscn" id="12_ynjwi"]
+[ext_resource type="PackedScene" uid="uid://cnhx01lhb05j4" path="res://Objects/ceiling.tscn" id="13_pa4kq"]
+[ext_resource type="Script" path="res://Scenes/arrow.gd" id="16_7nffc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m7lh2"]
 resource_name = "cave"
@@ -938,7 +943,6 @@ tile_set = SubResource("TileSet_dgvkx")
 script = ExtResource("6_cuoxe")
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
@@ -964,6 +968,7 @@ position = Vector2(2080, 432)
 position = Vector2(-39, 62)
 shape = SubResource("CircleShape2D_8iofe")
 disabled = true
+script = ExtResource("8_v57mh")
 
 [node name="BossTrigger" type="Area2D" parent="."]
 visible = false
@@ -990,8 +995,113 @@ libraries = {
 }
 script = ExtResource("11_uxxmx")
 
+[node name="Spikes" type="Node2D" parent="."]
+
+[node name="Boss_Spike" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1328, 576)
+
+[node name="Boss_Spike2" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1360, 576)
+id = 1
+
+[node name="Boss_Spike3" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1392, 576)
+id = 2
+
+[node name="Boss_Spike4" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1424, 576)
+id = 3
+
+[node name="Boss_Spike5" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1456, 576)
+id = 4
+
+[node name="Boss_Spike6" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1488, 576)
+id = 5
+
+[node name="Boss_Spike7" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1520, 576)
+id = 6
+
+[node name="Boss_Spike8" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1552, 576)
+id = 7
+
+[node name="Boss_Spike9" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1584, 576)
+id = 8
+
+[node name="Boss_Spike10" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1616, 576)
+id = 9
+
+[node name="Boss_Spike11" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1648, 576)
+id = 10
+
+[node name="Boss_Spike12" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1680, 576)
+id = 11
+
+[node name="Boss_Spike13" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1712, 576)
+id = 12
+
+[node name="Boss_Spike14" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1744, 576)
+id = 13
+
+[node name="Boss_Spike15" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1776, 576)
+id = 14
+
+[node name="Boss_Spike16" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1808, 576)
+id = 15
+
+[node name="Boss_Spike17" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1840, 576)
+id = 16
+
+[node name="Boss_Spike18" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1872, 576)
+id = 17
+
+[node name="Boss_Spike19" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1904, 576)
+id = 18
+
+[node name="Boss_Spike20" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1936, 576)
+id = 19
+
+[node name="Boss_Spike21" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(1968, 576)
+id = 20
+
+[node name="Boss_Spike22" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(2000, 576)
+id = 21
+
+[node name="Boss_Spike23" parent="Spikes" groups=["spikes"] instance=ExtResource("12_ynjwi")]
+position = Vector2(2032, 576)
+id = 22
+
+[node name="Ceiling" parent="." groups=["ceiling"] instance=ExtResource("13_pa4kq")]
+position = Vector2(1328, 64)
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2000, 464)
+rotation = 0.523598
+texture = ExtResource("11_vxqs7")
+script = ExtResource("16_7nffc")
+
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]
 [connection signal="boss_triggered" from="BossTrigger" to="TileMapLayer2" method="_on_boss_trigger_boss_triggered"]
 [connection signal="boss_triggered" from="BossTrigger" to="AnimationPlayer" method="play_def"]
+[connection signal="boss_defeated" from="Boss" to="LevelEnder/CollisionShape2D" method="enablee"]
+[connection signal="boss_defeated" from="Boss" to="Arrow" method="yayaya"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Player" method="revive"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Boss" method="start_boss"]

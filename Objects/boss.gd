@@ -2,9 +2,11 @@ extends Area2D
 class_name Boss
 
 const POKEY = preload("res://Objects/pokey.tscn")
+const BULLET_PARTICLES = preload("res://Objects/bullet_particles.tscn")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attacks_node: Node2D = $Attacks
+@onready var swoop: Node2D = $Attacks/Swoop
 
 signal boss_defeated
 
@@ -17,8 +19,10 @@ var current_attack : BossAttack = null
 var wavin = false
 var sine_t : float = 0
 var x_t : float = 0
-var hp := 4
+var hp := 1
 var invulnerable = true
+var dead = false
+var helper = 0
 
 func _ready() -> void:
 	for c in attacks_node.get_children():
@@ -43,12 +47,18 @@ func _physics_process(delta: float) -> void:
 			position.x = start_pos.x + sin(x_t) * 64
 
 func next_attack():
+	if dead: return
 	await get_tree().create_timer(1).timeout
+	helper += 1
 	var picked : BossAttack
 	picked = attacks.pick_random()
 	while picked == current_attack:
 		picked = attacks.pick_random()
 	current_attack = picked
+	if helper >= 5:
+		current_attack = swoop
+	if current_attack == swoop:
+		helper = 0
 	current_attack.attack()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -67,7 +77,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if hp > 0:
 		animation_player.play("hit_animation")
 	else:
-		print("win")
+		dead = true
+		hide()
+		var parti = BULLET_PARTICLES.instantiate()
+		parti.global_position = global_position
+		get_tree().get_first_node_in_group("level").call_deferred("add_child", parti)
 		boss_defeated.emit()
 
 

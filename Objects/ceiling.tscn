@@ -1,0 +1,130 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnhx01lhb05j4"]
+
+[ext_resource type="Script" path="res://Objects/ceiling.gd" id="1_4xbn4"]
+[ext_resource type="Texture2D" uid="uid://phwq2o4r1y0b" path="res://Assets/Art/spike_boss.png" id="1_acjnk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2bfi"]
+size = Vector2(735, 93)
+
+[node name="Ceiling" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_4xbn4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(96, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(128, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(160, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+position = Vector2(192, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+position = Vector2(224, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+position = Vector2(256, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D10" type="Sprite2D" parent="."]
+position = Vector2(288, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(320, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+position = Vector2(352, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D13" type="Sprite2D" parent="."]
+position = Vector2(384, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D14" type="Sprite2D" parent="."]
+position = Vector2(416, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D15" type="Sprite2D" parent="."]
+position = Vector2(448, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D16" type="Sprite2D" parent="."]
+position = Vector2(480, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D17" type="Sprite2D" parent="."]
+position = Vector2(512, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D18" type="Sprite2D" parent="."]
+position = Vector2(544, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D19" type="Sprite2D" parent="."]
+position = Vector2(576, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D20" type="Sprite2D" parent="."]
+position = Vector2(608, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D21" type="Sprite2D" parent="."]
+position = Vector2(640, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D22" type="Sprite2D" parent="."]
+position = Vector2(672, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="Sprite2D23" type="Sprite2D" parent="."]
+position = Vector2(704, 0)
+rotation = 3.14159
+texture = ExtResource("1_acjnk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(351.5, -1.5)
+shape = SubResource("RectangleShape2D_h2bfi")
