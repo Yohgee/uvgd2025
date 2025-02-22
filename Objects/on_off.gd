@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var timer: Timer = $Timer
+@onready var onoff_sfx: AudioStreamPlayer = $onoffSfx
 
 var active = true
 
@@ -12,6 +13,7 @@ func _ready() -> void:
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if !active: return
 	active = false
+	onoff_sfx.play()
 	Global.toggle_onoff()
 	timer.start(0.3)
 

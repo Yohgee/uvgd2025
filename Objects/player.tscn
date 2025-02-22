@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpuyumy11ggdt"]
+[gd_scene load_steps=10 format=3 uid="uid://dpuyumy11ggdt"]
 
 [ext_resource type="Texture2D" uid="uid://df18o28e8yuie" path="res://Assets/Art/hat.png" id="1_nvrm2"]
 [ext_resource type="Script" path="res://Objects/player.gd" id="1_r8vl1"]
 [ext_resource type="Script" path="res://Objects/physics_component.gd" id="3_6m6vc"]
 [ext_resource type="Script" path="res://Objects/movement_component.gd" id="4_7qosi"]
 [ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_5tvle"]
+[ext_resource type="AudioStream" uid="uid://c30kmxqih5oxx" path="res://Assets/Sounds/jump.wav" id="6_h76n6"]
+[ext_resource type="AudioStream" uid="uid://cvle60rltbluw" path="res://Assets/Sounds/explosion.wav" id="7_0l4xf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8smwa"]
 size = Vector2(28, 20)
@@ -13,6 +15,7 @@ size = Vector2(28, 20)
 size = Vector2(32, 20)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 2
 collision_layer = 2
 script = ExtResource("1_r8vl1")
 
@@ -43,6 +46,12 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_nmb18")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_h76n6")
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0l4xf")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="hurt"]
 [connection signal="body_entered" from="Hurtbox" to="." method="hurt"]

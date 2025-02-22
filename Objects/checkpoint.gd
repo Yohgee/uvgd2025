@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var checkpoint_sfx: AudioStreamPlayer = $checkpointSFX
 
 var t := 0.0
 
@@ -20,3 +21,4 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	Global.spawn_loc = global_position + Vector2(0,-64)
 	gpu_particles_2d.emitting = true
+	checkpoint_sfx.play()

@@ -7,6 +7,7 @@ extends StaticBody2D
 
 @onready var shoot := load(shoot_path)
 @onready var timer: Timer = $Timer
+@onready var shoot_sfx: AudioStreamPlayer = $ShootSfx
 
 func _ready() -> void:
 	timer.wait_time = time
@@ -19,6 +20,7 @@ func _on_timer_timeout() -> void:
 	if shoot_vel != Vector2.ZERO:
 		sp.set("velocity", shoot_vel)
 	sp.global_position = global_position + offset
+	shoot_sfx.play()
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://doxhhdqr151l6"]
+[gd_scene load_steps=11 format=3 uid="uid://doxhhdqr151l6"]
 
 [ext_resource type="Texture2D" uid="uid://crhpvn52ktjkv" path="res://Assets/Art/horse.png" id="1_n1wi1"]
 [ext_resource type="Script" path="res://Objects/horse.gd" id="1_ugtku"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Objects/movement_component.gd" id="4_3u71u"]
 [ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_33l7q"]
 [ext_resource type="Script" path="res://Objects/jump_horse.gd" id="6_hctuq"]
+[ext_resource type="AudioStream" uid="uid://c30kmxqih5oxx" path="res://Assets/Sounds/jump.wav" id="7_8uwf4"]
+[ext_resource type="AudioStream" uid="uid://b20kputsflph8" path="res://Assets/Sounds/click.wav" id="7_hco6f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cis7"]
 size = Vector2(48, 44)
@@ -14,6 +16,7 @@ size = Vector2(48, 44)
 size = Vector2(46, 12)
 
 [node name="Horse" type="CharacterBody2D" node_paths=PackedStringArray("horse_action")]
+z_index = 1
 collision_layer = 4
 script = ExtResource("1_ugtku")
 horse_action = NodePath("JumpHorse")
@@ -50,5 +53,11 @@ floatiness = 1.4
 
 [node name="JumpHorse" type="Node" parent="."]
 script = ExtResource("6_hctuq")
+
+[node name="jumphorseSfx" type="AudioStreamPlayer" parent="JumpHorse"]
+stream = ExtResource("7_8uwf4")
+
+[node name="Catch_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hco6f")
 
 [connection signal="body_entered" from="Saddle" to="." method="_on_saddle_body_entered"]

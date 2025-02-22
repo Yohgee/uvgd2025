@@ -6,13 +6,15 @@ class_name Horse
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var jump_component: JumpComponent = $JumpComponent
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var catch_sfx: AudioStreamPlayer = $Catch_sfx
 
 @export var horse_action : HorseAction
 
 var run_timer := 0.0
+@export var active = true
 
 func _physics_process(delta: float) -> void:
-	
+	if !active: return
 	physics_component.process_physics(delta)
 	
 	if movement_component.cspeed > 0:
@@ -43,7 +45,14 @@ func _on_saddle_body_entered(body: Node2D) -> void:
 	
 	if body.velocity.y < 0: return
 	
+	if velocity.y < body.velocity.y:
+		body.velocity.y = velocity.y
 	velocity = body.velocity
 	body.velocity = Vector2.ZERO
 	body.horse = self
+	catch_sfx.play()
 	
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	active = true

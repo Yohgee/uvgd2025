@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddf2xn56ep7s7"]
+[gd_scene load_steps=10 format=3 uid="uid://ddf2xn56ep7s7"]
 
 [ext_resource type="Script" path="res://Objects/horse.gd" id="1_s8xrc"]
 [ext_resource type="Texture2D" uid="uid://c1ho1d0sjrvj0" path="res://Assets/Art/coathanger.png" id="2_8wd05"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Objects/movement_component.gd" id="4_6xnud"]
 [ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_0xayu"]
 [ext_resource type="Script" path="res://Objects/coathanger.gd" id="6_fv05d"]
+[ext_resource type="AudioStream" uid="uid://b20kputsflph8" path="res://Assets/Sounds/click.wav" id="7_osnhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cis7"]
 size = Vector2(14, 20)
@@ -53,5 +54,8 @@ floatiness = 1.4
 
 [node name="Coathanger" type="Node" parent="."]
 script = ExtResource("6_fv05d")
+
+[node name="Catch_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_osnhm")
 
 [connection signal="body_entered" from="Saddle" to="." method="_on_saddle_body_entered"]

@@ -1,4 +1,5 @@
 extends Area2D
+class_name Bullet
 
 @export var velocity : Vector2 = Vector2(-180, 0)
 @export var bounce : float = 400
@@ -39,3 +40,12 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	active = true
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Bullet:
+		var l = get_tree().get_first_node_in_group("level")
+		var pa = BULLET_PARTICLES.instantiate()
+		l.add_child(pa)
+		pa.global_position = self.global_position
+		queue_free()

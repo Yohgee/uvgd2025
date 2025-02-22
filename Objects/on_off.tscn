@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://clb52o6oyy1mq"]
+[gd_scene load_steps=6 format=3 uid="uid://clb52o6oyy1mq"]
 
 [ext_resource type="Texture2D" uid="uid://cgetr7bkxw2ml" path="res://Assets/Art/onoff.png" id="1_420cn"]
 [ext_resource type="Script" path="res://Objects/on_off.gd" id="1_oqhl6"]
+[ext_resource type="AudioStream" uid="uid://cja7qjub8p8r7" path="res://Assets/Sounds/onoff.wav" id="3_i83wu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahd5x"]
 size = Vector2(30, 30)
@@ -30,6 +31,9 @@ shape = SubResource("RectangleShape2D_yc576")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="onoffSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i83wu")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

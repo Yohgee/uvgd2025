@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciftruqevokio"]
+[gd_scene load_steps=11 format=3 uid="uid://ciftruqevokio"]
 
 [ext_resource type="Script" path="res://Objects/horse.gd" id="1_h0507"]
 [ext_resource type="Texture2D" uid="uid://cn376hl265a35" path="res://Assets/Art/gunhorse.png" id="2_v77gu"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Objects/movement_component.gd" id="4_dehjl"]
 [ext_resource type="Script" path="res://Objects/jump_component.gd" id="5_n872g"]
 [ext_resource type="Script" path="res://Objects/shoothorse.gd" id="6_eqxn4"]
+[ext_resource type="AudioStream" uid="uid://b20kputsflph8" path="res://Assets/Sounds/click.wav" id="7_4kaj3"]
+[ext_resource type="AudioStream" uid="uid://w20eypaklpmf" path="res://Assets/Sounds/laserShoot.wav" id="7_f7gng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cis7"]
 size = Vector2(48, 44)
@@ -14,6 +16,7 @@ size = Vector2(48, 44)
 size = Vector2(46, 12)
 
 [node name="gunHorse" type="CharacterBody2D" node_paths=PackedStringArray("horse_action")]
+z_index = 1
 collision_layer = 4
 script = ExtResource("1_h0507")
 horse_action = NodePath("SHOOTHORSE")
@@ -54,4 +57,14 @@ floatiness = 1.4
 script = ExtResource("6_eqxn4")
 offset = Vector2(58, 0)
 
+[node name="ShootSFX" type="AudioStreamPlayer" parent="SHOOTHORSE"]
+stream = ExtResource("7_f7gng")
+pitch_scale = 1.43
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Catch_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4kaj3")
+
 [connection signal="body_entered" from="Saddle" to="." method="_on_saddle_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

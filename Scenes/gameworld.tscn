@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c76iwc0owjiii"]
+[gd_scene load_steps=16 format=4 uid="uid://c76iwc0owjiii"]
 
 [ext_resource type="Script" path="res://Scenes/gameworld.gd" id="1_cipe1"]
 [ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="1_jaimt"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://3r20i6bybpb7" path="res://Objects/pokey.tscn" id="8_c3pv2"]
 [ext_resource type="PackedScene" uid="uid://doxhhdqr151l6" path="res://Objects/horse.tscn" id="9_f4ifn"]
 [ext_resource type="PackedScene" uid="uid://bnkromv6b6lxj" path="res://Objects/level_ender.tscn" id="10_g0f88"]
+[ext_resource type="Texture2D" uid="uid://j2f25erho63m" path="res://Assets/Art/arrow.png" id="11_5x6rf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6xs0"]
 resource_name = "desert"
@@ -453,7 +454,6 @@ script = ExtResource("1_cipe1")
 starting_horse = "res://Objects/horse.tscn"
 
 [node name="Player" parent="." instance=ExtResource("1_jaimt")]
-z_index = 1
 position = Vector2(128, 384)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -720,3 +720,38 @@ level_trans = "res://Scenes/LevelTransition_canyon.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnder"]
 shape = SubResource("WorldBoundaryShape2D_eu5fa")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(4608, 192)
+rotation = 0.785397
+texture = ExtResource("11_5x6rf")
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+position = Vector2(3328, 208)
+rotation = 1.57079
+texture = ExtResource("11_5x6rf")
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+position = Vector2(3680, 176)
+rotation = -0.785397
+texture = ExtResource("11_5x6rf")
+
+[node name="Arrow4" type="Sprite2D" parent="."]
+position = Vector2(10704, 208)
+rotation = -3.14159
+texture = ExtResource("11_5x6rf")
+
+[node name="Arrow5" type="Sprite2D" parent="."]
+position = Vector2(10704, 176)
+rotation = -3.14159
+texture = ExtResource("11_5x6rf")
+
+[node name="Arrow6" type="Sprite2D" parent="."]
+position = Vector2(10704, 144)
+rotation = -3.14159
+texture = ExtResource("11_5x6rf")
+
+[node name="Arrow7" type="Sprite2D" parent="."]
+position = Vector2(12336, 576)
+rotation = -0.785397
+texture = ExtResource("11_5x6rf")

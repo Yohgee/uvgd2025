@@ -8,6 +8,8 @@ const DISMOUNT_VEL = -360
 @onready var jump_component: JumpComponent = $JumpComponent
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var jump_sfx: AudioStreamPlayer = $Jump
+@onready var death_sfx: AudioStreamPlayer = $DeathSfx
 
 var horse : Horse = null
 
@@ -47,6 +49,7 @@ func handle_horse(delta):
 		horse.velocity.y = 0
 	
 	if Input.is_action_just_pressed("jump"):
+		jump_sfx.play()
 		velocity = horse.velocity
 		horse = null
 		velocity.y = DISMOUNT_VEL
@@ -54,4 +57,8 @@ func handle_horse(delta):
 func hurt(_body : Node2D):
 	if dead: return
 	dead = true
+	death_sfx.play()
 	get_tree().get_first_node_in_group("level").reload()
+
+func revive(_v : Variant = null):
+	dead = false

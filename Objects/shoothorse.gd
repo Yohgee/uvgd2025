@@ -5,6 +5,7 @@ class_name HorseShoot
 @export var speed : Vector2 = Vector2(340,0)
 @export var offset : Vector2 = Vector2(68,0)
 @export var cooldown : float = 0.6
+@onready var shoot_sfx: AudioStreamPlayer = $ShootSFX
 
 @onready var horse := get_parent() as Horse
 @onready var shoot := load(shoot_path) as PackedScene
@@ -29,6 +30,7 @@ func action():
 	var l = get_tree().get_first_node_in_group("level")
 	l.add_child(shot)
 	shot.global_position = horse.global_position + os
+	shoot_sfx.play()
 	if speed != Vector2.ZERO:
 		shot.set("velocity", sv)
 	

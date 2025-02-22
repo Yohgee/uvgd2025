@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://bm5u4fjsc35uc"]
+
+[ext_resource type="Script" path="res://Objects/boss.gd" id="1_cpqav"]
+[ext_resource type="Texture2D" uid="uid://eg41qcskyrre" path="res://Assets/Art/boss.png" id="1_rmbbj"]
+[ext_resource type="Script" path="res://Objects/shoot_attack.gd" id="3_7lkip"]
+[ext_resource type="Script" path="res://Objects/swoop.gd" id="4_namtc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbi73"]
+size = Vector2(50, 47)
+
+[sub_resource type="Animation" id="Animation_yr1yd"]
+resource_name = "hit_animation"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(96.757, 1, 1, 1), Color(1, 1, 1, 1), Color(100, 1, 1, 1), Color(1, 1, 1, 1), Color(2.703, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s6orm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f6kfe"]
+_data = {
+"RESET": SubResource("Animation_s6orm"),
+"hit_animation": SubResource("Animation_yr1yd")
+}
+
+[node name="Boss" type="Area2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_cpqav")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rmbbj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bbi73")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f6kfe")
+}
+
+[node name="Attacks" type="Node2D" parent="."]
+
+[node name="ShootAttack" type="Node2D" parent="Attacks"]
+script = ExtResource("3_7lkip")
+things = Array[String](["res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn", "res://Objects/shotgun_blast.tscn"])
+
+[node name="CircleShoot" type="Node2D" parent="Attacks"]
+script = ExtResource("3_7lkip")
+things = Array[String](["res://Objects/circle_blast.tscn", "res://Objects/circle_shot_45.tscn"])
+delay = 0.7
+repeat = 2
+
+[node name="Swoop" type="Node2D" parent="Attacks"]
+script = ExtResource("4_namtc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

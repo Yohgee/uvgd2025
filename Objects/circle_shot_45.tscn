@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://r7kevvgl6ud"]
+
+[ext_resource type="Script" path="res://circle_blast.gd" id="1_bvtda"]
+
+[node name="CircleShot45" type="Node2D"]
+rotation = 0.1309
+script = ExtResource("1_bvtda")
+num = 20
+vel = Vector2(200, 0)

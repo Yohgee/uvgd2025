@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbo2866i0hgj1"]
+[gd_scene load_steps=5 format=3 uid="uid://bbo2866i0hgj1"]
 
 [ext_resource type="Texture2D" uid="uid://ytarcee6ucl3" path="res://Assets/Art/particle.png" id="1_6yep6"]
 [ext_resource type="Script" path="res://Objects/bullet_particles.gd" id="2_1djwh"]
+[ext_resource type="AudioStream" uid="uid://w20eypaklpmf" path="res://Assets/Sounds/laserShoot.wav" id="3_yre51"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3pxg7"]
 particle_flag_disable_z = true
@@ -18,5 +19,8 @@ lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 script = ExtResource("2_1djwh")
+
+[node name="BounceSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yre51")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

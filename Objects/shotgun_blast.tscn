@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://tntq7rmatwfh"]
+
+[ext_resource type="Script" path="res://Objects/shotgun_blast.gd" id="1_jg5bk"]
+[ext_resource type="PackedScene" uid="uid://b4ffl207c560l" path="res://Objects/boss_bullet.tscn" id="2_pq656"]
+
+[node name="ShotgunBlast" type="Node2D"]
+script = ExtResource("1_jg5bk")
+
+[node name="BossBullet" parent="." instance=ExtResource("2_pq656")]
+
+[node name="BossBullet2" parent="." instance=ExtResource("2_pq656")]
+rotation = -0.314159
+
+[node name="BossBullet3" parent="." instance=ExtResource("2_pq656")]
+rotation = -0.628319
+
+[node name="BossBullet4" parent="." instance=ExtResource("2_pq656")]
+rotation = 0.314159
+
+[node name="BossBullet5" parent="." instance=ExtResource("2_pq656")]
+rotation = 0.628319

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpdpky0fs0pqo"]
+[gd_scene load_steps=9 format=3 uid="uid://cpdpky0fs0pqo"]
 
 [ext_resource type="Texture2D" uid="uid://camoctei7jfps" path="res://Assets/Art/checkpoint.png" id="1_7qp3r"]
 [ext_resource type="Script" path="res://Objects/checkpoint.gd" id="1_67fag"]
 [ext_resource type="Texture2D" uid="uid://ytarcee6ucl3" path="res://Assets/Art/particle.png" id="3_kwm6i"]
+[ext_resource type="AudioStream" uid="uid://cgr1uba3soyg2" path="res://Assets/Sounds/checkpoint.wav" id="4_us5bg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikhwq"]
 size = Vector2(24, 21)
@@ -48,5 +49,8 @@ process_material = SubResource("ParticleProcessMaterial_55is7")
 texture = ExtResource("3_kwm6i")
 one_shot = true
 explosiveness = 1.0
+
+[node name="checkpointSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_us5bg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

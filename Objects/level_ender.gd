@@ -4,7 +4,7 @@ extends Area2D
 
 func _ready() -> void:
 	var p : Player = get_tree().get_first_node_in_group("player")
-	p.camera_2d.limit_right = global_position.x
+	p.camera_2d.limit_right = int(global_position.x)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is not Player: return
