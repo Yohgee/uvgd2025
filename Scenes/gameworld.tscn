@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=4 uid="uid://c76iwc0owjiii"]
+[gd_scene load_steps=18 format=4 uid="uid://c76iwc0owjiii"]
 
 [ext_resource type="Script" path="res://Scenes/gameworld.gd" id="1_cipe1"]
 [ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="1_jaimt"]
+[ext_resource type="AudioStream" uid="uid://ldernsk5yxt5" path="res://Assets/Sounds/game-002.mp3" id="2_3k5qh"]
 [ext_resource type="Texture2D" uid="uid://b5fjkd4oqguss" path="res://Assets/Art/tilemap.png" id="3_p4f2q"]
 [ext_resource type="Texture2D" uid="uid://bekwxcb5vljkc" path="res://Assets/Art/cactus.png" id="4_8yy47"]
 [ext_resource type="PackedScene" uid="uid://daqv7l03t2hwv" path="res://Objects/spring.tscn" id="5_65mi7"]
@@ -450,9 +451,13 @@ sources/2 = SubResource("TileSetAtlasSource_3sggr")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eu5fa"]
 normal = Vector2(-1, 0)
 
-[node name="Gameworld" type="Node2D" groups=["level"]]
+[node name="Gameworld" type="Node2D" node_paths=PackedStringArray("song") groups=["level"]]
 script = ExtResource("1_cipe1")
 starting_horse = "res://Objects/horse.tscn"
+song = NodePath("Song")
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3k5qh")
 
 [node name="Player" parent="." instance=ExtResource("1_jaimt")]
 position = Vector2(128, 384)
@@ -584,11 +589,6 @@ position = Vector2(9184, 384)
 rotation = -0.785397
 springiness = Vector2(-600, -600)
 
-[node name="Spring31" parent="Springs" instance=ExtResource("5_65mi7")]
-position = Vector2(10288, 448)
-rotation = 0.785397
-springiness = Vector2(350, -410)
-
 [node name="Spring39" parent="Springs" instance=ExtResource("5_65mi7")]
 position = Vector2(10736, 416)
 rotation = 0.785397
@@ -613,11 +613,6 @@ springiness = Vector2(350, -410)
 position = Vector2(10544, 592)
 rotation = 0.785397
 springiness = Vector2(350, -410)
-
-[node name="Spring36" parent="Springs" instance=ExtResource("5_65mi7")]
-position = Vector2(10528, 448)
-rotation = -0.785397
-springiness = Vector2(-350, -410)
 
 [node name="Spring41" parent="Springs" instance=ExtResource("5_65mi7")]
 position = Vector2(10960, 256)
@@ -700,9 +695,6 @@ height = 11
 position = Vector2(8016, 320)
 height = 9
 
-[node name="Pokey8" parent="Pokeys" instance=ExtResource("8_c3pv2")]
-position = Vector2(10288, 384)
-
 [node name="Pokey9" parent="Pokeys" instance=ExtResource("8_c3pv2")]
 position = Vector2(10960, 208)
 
@@ -760,3 +752,5 @@ texture = ExtResource("11_5x6rf")
 [node name="Instructions" type="Sprite2D" parent="."]
 position = Vector2(272, 224)
 texture = ExtResource("12_su8ne")
+
+[connection signal="finished" from="Song" to="." method="_on_song_finished"]

@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cgr1uba3soyg2" path="res://Assets/Sounds/checkpoint.wav" id="4_us5bg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ikhwq"]
-size = Vector2(24, 21)
+size = Vector2(30, 38)
 
 [sub_resource type="Curve" id="Curve_msygb"]
 _data = [Vector2(0.00666666, 1), 0.0, 0.468479, 0, 0, Vector2(1, 0.021978), -0.18315, 0.0, 0, 0]
@@ -38,7 +38,7 @@ texture = ExtResource("1_7qp3r")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -10.5)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ikhwq")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

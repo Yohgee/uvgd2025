@@ -89,6 +89,7 @@ script = ExtResource("4_namtc")
 
 [node name="Tone" type="AudioStreamPlayer" parent="Attacks/Swoop"]
 stream = ExtResource("6_lt1nf")
+volume_db = -10.306
 
 [node name="SpikeAll" type="Node2D" parent="Attacks"]
 script = ExtResource("5_7177a")

@@ -49,5 +49,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.489622, 0.489622, 0.489622, 1)
 theme_override_font_sizes/font_size = 32
-text = "Game made by Eli"
+text = "Game made by Eli
+Music by Matthew Ritonja"
 horizontal_alignment = 1

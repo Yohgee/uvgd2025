@@ -7,6 +7,7 @@ const BULLET_PARTICLES = preload("res://Objects/bullet_particles.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attacks_node: Node2D = $Attacks
 @onready var swoop: Node2D = $Attacks/Swoop
+@export var song : AudioStreamPlayer
 
 signal boss_defeated
 
@@ -34,6 +35,7 @@ func start_boss(_v : Variant = null):
 	sine_t = 0
 	wavin = true
 	invulnerable = false
+	song.play()
 	next_attack()
 
 func _physics_process(delta: float) -> void:

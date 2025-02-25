@@ -119,4 +119,4 @@ libraries = {
 
 [node name="crush" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_rcmru")
-volume_db = -13.783
+volume_db = -26.901

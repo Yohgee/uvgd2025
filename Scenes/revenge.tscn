@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://eppp1vn57ey3"]
+[gd_scene load_steps=29 format=4 uid="uid://eppp1vn57ey3"]
 
 [ext_resource type="Script" path="res://Scenes/gameworld.gd" id="1_mffv5"]
 [ext_resource type="PackedScene" uid="uid://dpuyumy11ggdt" path="res://Objects/player.tscn" id="2_xn7j2"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://cnhx01lhb05j4" path="res://Objects/ceiling.tscn" id="13_pa4kq"]
 [ext_resource type="Script" path="res://Scenes/arrow.gd" id="16_7nffc"]
 [ext_resource type="AudioStream" uid="uid://4olpw1o67ddy" path="res://Assets/Sounds/hb.wav" id="17_0gpxd"]
+[ext_resource type="Script" path="res://Scenes/song.gd" id="18_5oh6o"]
+[ext_resource type="AudioStream" uid="uid://4wb8p0uvhxjf" path="res://Assets/Sounds/bossreal-001.mp3" id="18_yrnv8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m7lh2"]
 resource_name = "cave"
@@ -949,9 +951,11 @@ _data = {
 "boss_getup": SubResource("Animation_qxaf3")
 }
 
-[node name="Gameworld" type="Node2D" groups=["level"]]
+[node name="Gameworld" type="Node2D" node_paths=PackedStringArray("song") groups=["level"]]
 script = ExtResource("1_mffv5")
 starting_horse = "res://Objects/horse.tscn"
+song = NodePath("Song")
+thingsoicanplaybossmusiclater = true
 
 [node name="Player" parent="." instance=ExtResource("2_xn7j2")]
 position = Vector2(128, 16)
@@ -1012,9 +1016,10 @@ shape = SubResource("RectangleShape2D_p1yo5")
 position = Vector2(2032, 496)
 texture = ExtResource("9_udi1m")
 
-[node name="Boss" parent="." instance=ExtResource("10_l56vc")]
+[node name="Boss" parent="." node_paths=PackedStringArray("song") instance=ExtResource("10_l56vc")]
 position = Vector2(2029, 467)
 rotation = -0.523598
+song = NodePath("../Song")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1128,10 +1133,16 @@ script = ExtResource("16_7nffc")
 [node name="Hb" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_0gpxd")
 
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_yrnv8")
+script = ExtResource("18_5oh6o")
+
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]
 [connection signal="boss_triggered" from="BossTrigger" to="TileMapLayer2" method="_on_boss_trigger_boss_triggered"]
 [connection signal="boss_triggered" from="BossTrigger" to="AnimationPlayer" method="play_def"]
 [connection signal="boss_defeated" from="Boss" to="LevelEnder/CollisionShape2D" method="enablee"]
 [connection signal="boss_defeated" from="Boss" to="Arrow" method="yayaya"]
+[connection signal="boss_defeated" from="Boss" to="Song" method="stop_playing"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Player" method="revive"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Boss" method="start_boss"]
+[connection signal="finished" from="Song" to="." method="_on_song_finished"]
